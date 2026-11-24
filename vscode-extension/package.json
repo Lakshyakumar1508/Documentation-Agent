@@ -1,0 +1,75 @@
+{
+  "name": "docagent-vscode",
+  "displayName": "Documentation Agent",
+  "description": "Production Intelligent Documentation Agent for VS Code: Analyze code, generate docs, detect drift, and inspect CI/CD logs.",
+  "version": "0.1.0",
+  "publisher": "docagent",
+  "engines": {
+    "vscode": "^1.85.0"
+  },
+  "categories": [
+    "Programming Languages",
+    "Other"
+  ],
+  "main": "./dist/extension.js",
+  "contributes": {
+    "commands": [
+      {
+        "command": "docagent.analyzeProject",
+        "title": "Documentation Agent: Analyze Project",
+        "category": "DocAgent"
+      },
+      {
+        "command": "docagent.generateReadme",
+        "title": "Documentation Agent: Generate README",
+        "category": "DocAgent"
+      },
+      {
+        "command": "docagent.analyzeLogs",
+        "title": "Documentation Agent: Analyze Logs",
+        "category": "DocAgent"
+      },
+      {
+        "command": "docagent.checkDocumentation",
+        "title": "Documentation Agent: Check Documentation",
+        "category": "DocAgent"
+      },
+      {
+        "command": "docagent.reviewChanges",
+        "title": "Documentation Agent: Review Changes",
+        "category": "DocAgent"
+      }
+    ],
+    "configuration": {
+      "title": "Documentation Agent",
+      "properties": {
+        "docagent.apiEndpoint": {
+          "type": "string",
+          "default": "http://127.0.0.1:8000",
+          "description": "Base URL of the DocAgent shared engine backend service."
+        },
+        "docagent.useLocalCLI": {
+          "type": "boolean",
+          "default": true,
+          "description": "If enabled, executes the local docagent CLI directly without requiring a running HTTP backend."
+        },
+        "docagent.autoApprove": {
+          "type": "boolean",
+          "default": false,
+          "description": "Automatically apply generated documentation changes without prompt."
+        }
+      }
+    }
+  },
+  "scripts": {
+    "build": "tsc -p ./",
+    "watch": "tsc -watch -p ./",
+    "test": "node ./dist/test/runTest.js"
+  },
+  "devDependencies": {
+    "@types/node": "^20.11.0",
+    "@types/vscode": "^1.85.0",
+    "typescript": "^5.3.3"
+  }
+}
+
